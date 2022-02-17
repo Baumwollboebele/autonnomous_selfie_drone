@@ -17,8 +17,8 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Lint with flake8
         run: |
-          flake8 bubble_sort.py --count --select=E9,F63,F7,F82 --show-source --statistics
-          flake8 bubble_sort.py --count --max-complexity=10 --max-line-length=79 --statistics
+          flake8 source --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 source --count --max-complexity=10 --max-line-length=79 --statistics
       - name: Lint with Pylint
         run: |
-          pylint bubble_sort.py --disable=C0114 
+          pylint source --disable=C0114 
