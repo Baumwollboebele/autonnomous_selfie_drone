@@ -1,1 +1,2 @@
 djitellopy==2.4.0
+mediapipe==0.8.8.1
