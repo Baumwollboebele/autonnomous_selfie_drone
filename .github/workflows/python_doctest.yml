@@ -10,4 +10,8 @@ jobs:
         with:
           python-version: 3.9.7
       - name: Run doctest
-        run: python -m doctest -v source
+        run: |
+              python -m doctest -v source/Constants.py
+              python -m doctest -v source/Controller.py
+              python -m doctest -v source/Main.py
+              python -m doctest -v source/PoseDetection.py
