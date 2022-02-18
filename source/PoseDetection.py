@@ -44,6 +44,7 @@ class PoseDetection():
         True
 
         >>> left_arm_up(30,50,60,50)
+        False
         """
 
         if left_wrist  < left_shoulder and right_wrist > right_shoulder:
