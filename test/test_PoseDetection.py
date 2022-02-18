@@ -1,4 +1,5 @@
 import unittest
+from source.PoseDetection import PoseDetection
 
 class TestPoseDetection(unittest.TestCase):
   
