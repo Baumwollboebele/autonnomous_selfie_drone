@@ -8,9 +8,3 @@ class TestPoseDetection(unittest.TestCase):
   def test_right_arm_up(self):
     self.assertEqual(True,True)
     
-    
-    
-    
-if __name__ == '__main__':
-    unittest.main()
-    
