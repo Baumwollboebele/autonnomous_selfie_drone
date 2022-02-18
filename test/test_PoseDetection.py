@@ -4,7 +4,7 @@ from source.PoseDetection import PoseDetection
 class TestPoseDetection(unittest.TestCase):
   
   def setUp(self):
-    self.pd = PoseDetection
+    self.pd = PoseDetection()
   
   def test_left_arm_up(self):
     
