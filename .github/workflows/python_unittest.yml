@@ -1,4 +1,4 @@
-name: Python Doctest
+name: Python Unittest
 on: [push]
 jobs:
   build:
