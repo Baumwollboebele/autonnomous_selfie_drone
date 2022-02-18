@@ -36,15 +36,6 @@ class PoseDetection():
 
         Returns:
             bool: True if left arm is up, false if left arm is down.
-
-        >>> left_arm_up(0,0,0,0)
-        False
-
-        >>> left_arm_up(50,45,20,46)
-        True
-
-        >>> left_arm_up(30,50,60,50)
-        False
         """
 
         if left_wrist  < left_shoulder and right_wrist > right_shoulder:
