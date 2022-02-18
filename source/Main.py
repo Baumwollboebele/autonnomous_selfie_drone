@@ -32,7 +32,8 @@ def main():
 
         if results.pose_landmarks:
             landmarks = [lm for lm in results.pose_landmarks.landmark]
-            mpDraw.draw_landmarks(img, results.pose_landmarks, mpPose.POSE_CONNECTIONS)
+            mpDraw.draw_landmarks(img, results.pose_landmarks,
+                                  mpPose.POSE_CONNECTIONS)
 
             # right_wrist_x = int(landmarks[16].x*w)
             right_wrist_y = int(landmarks[16].y*h)
