@@ -13,9 +13,6 @@ jobs:
         run: |
               python -m pip install --upgrade pip
               if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Run doctest
+      - name: Run unittest
         run: |
-              python -m doctest -v source/Constants.py
-              python -m doctest -v source/Controller.py
-              python -m doctest -v source/Main.py
-              python -m doctest -v source/PoseDetection.py
+              python -m test/test_PoseDetection.py
