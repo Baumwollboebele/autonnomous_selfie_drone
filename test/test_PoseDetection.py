@@ -8,8 +8,8 @@ class TestPoseDetection(unittest.TestCase):
   
   def test_left_arm_up(self):
     
-    self.assertEqual(pd.left_arm_up(0,0,0,0),False)
-    self.assertEqual(pd.left_arm_up(60,50,40,50),True)
+    self.assertEqual(self.pd.left_arm_up(0,0,0,0),False)
+    self.assertEqual(self.pd.left_arm_up(60,50,40,50),True)
     
   def test_right_arm_up(self):
     self.assertEqual(True,True)
