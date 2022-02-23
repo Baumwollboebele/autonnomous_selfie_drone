@@ -1,4 +1,4 @@
-name: Flake8 Linting
+name: Flake8
 on: [push]
 jobs:
   build:
