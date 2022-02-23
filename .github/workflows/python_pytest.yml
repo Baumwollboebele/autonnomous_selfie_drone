@@ -1,4 +1,4 @@
-name: Python Pytest
+name: Pytest
 on: [push]
 jobs:
   build:
