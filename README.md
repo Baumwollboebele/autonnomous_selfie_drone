@@ -8,7 +8,7 @@ Autonomous Selfie drone using the Tello Education drone with pose estimation.
 
 ## Author
 
-![Felix Hamburger](https://github.com/Baumwollboebele)
+[Felix Hamburger](https://github.com/Baumwollboebele)
 
 ## Tello Drone
 
@@ -16,5 +16,8 @@ Autonomous Selfie drone using the Tello Education drone with pose estimation.
 
 
 ## Getting Started
+
+
+## Paper
 
 
