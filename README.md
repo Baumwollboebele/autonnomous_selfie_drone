@@ -8,8 +8,4 @@ Autonomous Selfie drone using the Tello Education drone with pose estimation.
 
 ## Tello Drone
 
-
-<p float="left">
-  <img src="/images/tello_drone.jpg" height="400" />
-  <img src="/images/drone_technical_details.PNG" height="400" /> 
-</p>
+<img src="/images/tello_drone.jpg" height="400"/>
