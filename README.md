@@ -11,6 +11,10 @@ Autonomous Selfie drone using the Tello Education drone with pose estimation.
 2. [Getting Started](#getting-started)
 
 
+# Summary
+
+This project aims to build an autonomous moving drone with the possibility to control it via predefined poses.
+
 
 <hr/>
 
@@ -47,7 +51,4 @@ Autonomous Selfie drone using the Tello Education drone with pose estimation.
 
 ## Getting Started
 
-
 ## Paper
-
-
