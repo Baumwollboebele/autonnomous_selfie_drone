@@ -9,9 +9,6 @@ class Constants():
 
     """
 
-    def __init__(self):
-        self.picture = True
-
     @property
     def DRONE_SPEED_X(self) -> int:
         """
