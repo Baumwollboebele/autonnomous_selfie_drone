@@ -51,4 +51,7 @@ This project aims to build an autonomous moving drone with the possibility to co
 
 ## Getting Started
 
+Install the requirements:</br>
+```pip install -r requirements.txt```
+
 ## Paper
