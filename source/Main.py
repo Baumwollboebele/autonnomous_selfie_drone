@@ -58,7 +58,7 @@ def main():
                                            right_elbow_x, right_elbow_y,
                                            left_elbow_x, left_elbow_y):
                 pass
-                
+
             elif pose_detection.right_arm_up(right_wrist_y, right_shoulder_y,
                                              left_wrist_y, left_shoulder_y):
                 controller.move_pose("right")
@@ -82,7 +82,7 @@ def main():
                 arrowerd_line_length = ((abs((w/2)-nose_x)**2) +
                                         (abs((h/2)-nose_y)**2))**.5
 
-                cv2.putText(img, f"X: {nose_x}", (50, 100), 
+                cv2.putText(img, f"X: {nose_x}", (50, 100),
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
                 cv2.putText(img, f"Y: {nose_y}", (50, 150),
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
