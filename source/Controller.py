@@ -1,5 +1,8 @@
 from Constants import Constants
+from cv2 import imwrite
+from time import sleep
 from djitellopy import tello
+
 
 
 class Controller():
@@ -94,3 +97,9 @@ class Controller():
 
     def get_stream(self):
         return self.drone.get_frame_read().frame
+
+    def take_picture(self):
+        print("Taking Picture")
+        sleep(3)
+        imwrite("images/picture.jpg", self.get_stream())
+        Constants.picture = True

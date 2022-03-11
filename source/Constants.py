@@ -8,6 +8,10 @@ class Constants():
     Changing these values will result in a different behaviour of the drone.
 
     """
+
+    def __init__(self):
+        self.picture = True
+
     @property
     def DRONE_SPEED_X(self) -> int:
         """
@@ -30,7 +34,7 @@ class Constants():
         Returns:
             (int): value of the distance
         """
-        return 10
+        return 20
 
     @property
     def DRONE_SPEED_Z(self) -> int:
@@ -53,7 +57,7 @@ class Constants():
         Returns:
             (int): value of the rotation
         """
-        return 30
+        return 20
 
     @property
     def TOLERANCE_X(self) -> int:
@@ -117,3 +121,11 @@ class Constants():
         TODO
         """
         return
+
+    @property
+    def picture(self):
+        return self.flag_pic
+
+    @picture.setter
+    def picture(self, value):
+        self.flag_pic = value

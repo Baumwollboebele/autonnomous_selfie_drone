@@ -60,3 +60,25 @@ class PoseDetection():
         if right_wrist < right_shoulder and left_wrist > left_shoulder:
             return True
         return False
+
+    @staticmethod
+    def arms_crossed(right_wrist_x, right_wrist_y,
+                     left_wrist_x, left_wrist_y,
+                     right_elbow_x, right_elbow_y,
+                     left_elbow_x, left_elbow_y):
+        """
+        _summary_
+
+        Args:
+            right_wrist_x (_type_): _description_
+            right_wrist_y (_type_): _description_
+            left_wrist_x (_type_): _description_
+            left_wrist_y (_type_): _description_
+            right_elbow_x (_type_): _description_
+            right_elbow_y (_type_): _description_
+            left_elbow_x (_type_): _description_
+            left_elbow_y (_type_): _description_
+        """
+
+        if right_wrist_x > left_wrist_x:
+            return True
