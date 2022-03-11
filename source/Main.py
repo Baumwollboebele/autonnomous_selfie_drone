@@ -1,12 +1,10 @@
 import cv2
 import mediapipe as mp
 import time
-import threading
 
 import doctest
 
 from Controller import Controller
-from Constants import Constants
 from PoseDetection import PoseDetection
 
 
@@ -14,7 +12,6 @@ def main():
     mpPose = mp.solutions.pose
     pose = mpPose.Pose()
     mpDraw = mp.solutions.drawing_utils
-    picture_thread = threading.Thread(target=Controller.take_picture)
 
     pTime = 0
 
@@ -59,10 +56,9 @@ def main():
             if pose_detection.arms_crossed(right_wrist_x, right_wrist_y,
                                            left_wrist_x, left_wrist_y,
                                            right_elbow_x, right_elbow_y,
-                                           left_elbow_x, left_elbow_y) and Constants.picture:
-                Constants.picture = False
-                picture_thread.start()
-
+                                           left_elbow_x, left_elbow_y):
+                pass
+                
             elif pose_detection.right_arm_up(right_wrist_y, right_shoulder_y,
                                              left_wrist_y, left_shoulder_y):
                 controller.move_pose("right")

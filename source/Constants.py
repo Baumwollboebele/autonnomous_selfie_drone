@@ -121,11 +121,3 @@ class Constants():
         TODO
         """
         return
-
-    @property
-    def picture(self):
-        return self.flag_pic
-
-    @picture.setter
-    def picture(self, value):
-        self.flag_pic = value
