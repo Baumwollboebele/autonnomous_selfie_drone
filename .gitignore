@@ -130,3 +130,9 @@ dmypy.json
 
 #Vs code settings
 .vscode
+
+# Movie
+*.mov
+
+# IOS File
+.DS_store
