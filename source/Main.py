@@ -41,10 +41,10 @@ def main():
             left_wrist_x = int(landmarks[15].x*w)
             left_wrist_y = int(landmarks[15].y*h)
 
-            right_shoulder_x = int(landmarks[12].x*w)
+            # right_shoulder_x = int(landmarks[12].x*w)
             right_shoulder_y = int(landmarks[12].y*h)
 
-            left_shoulder_x = int(landmarks[11].x*w)
+            # left_shoulder_x = int(landmarks[11].x*w)
             left_shoulder_y = int(landmarks[11].y*h)
 
             left_elbow_x = int(landmarks[14].x*w)
