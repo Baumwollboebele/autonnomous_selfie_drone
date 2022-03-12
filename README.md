@@ -7,7 +7,7 @@
 1. [Summary](#summary)
 2. [Getting Started](#getting-started)
 3. [Technical Details](#tello-drone)
-4. [Third Party](#third-party)
+4. [Sources](#sources)
 
 # Summary
 
@@ -71,9 +71,14 @@ if you want to run the project.
 |Energy| 4.18 Wh|
 
 
-# Third Party
+# Sources
 
 Mediapipe:
+https://github.com/google/mediapipe<br>
+Mediapipe Pose:
 https://google.github.io/mediapipe/solutions/pose</br>
 DJITelloPy:
-https://github.com/damiafuentes/DJITelloPy/
+https://github.com/damiafuentes/DJITelloPy/<br>
+BlazePose:
+https://arxiv.org/abs/2006.10204
+
