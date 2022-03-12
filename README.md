@@ -2,27 +2,47 @@
 
 [![Python Pytest](https://github.com/Baumwollboebele/autonnomous_selfie_drone/actions/workflows/python_pytest.yml/badge.svg)](https://github.com/Baumwollboebele/autonnomous_selfie_drone/actions/workflows/python_pytest.yml)&nbsp;&nbsp;&nbsp;[![Python Linting](https://github.com/Baumwollboebele/autonnomous_selfie_drone/actions/workflows/python_linting.yml/badge.svg)](https://github.com/Baumwollboebele/autonnomous_selfie_drone/actions/workflows/python_linting.yml)
 
-Autonomous Selfie drone using the Tello Education drone with pose estimation.
-
-
 # Table of Contents
 
-1. [Tello Drone](#tello-drone)
+1. [Summary](#summary)
 2. [Getting Started](#getting-started)
-
+3. [Technical Details](#tello-drone)
+4. [Third Party](#third-party)
 
 # Summary
+This repository contains the code and documentation of an autonomous selfie drone.
+The drone used for this project was the [Tello](https://www.ryzerobotics.com/de/tello) drone from Ryze.
 
-This project aims to build an autonomous moving drone with the possibility to control it via predefined poses.
-https://baumwollboebele.github.io/autonnomous_selfie_drone/
+The purpose of the project was to create an autonomous drone which is capable of making images which can be triggered by poses.
+In addition to that, the drone should be able to be controlled via poses.
+
+By utilizing the [BlazePose](https://arxiv.org/abs/2006.10204) CNN, three poses can be detected.
+- Right arm up: Which enables the drone to move to its left side (right side of the viewers perspective).
+- Left arm up: Which enables the drone to move to its right side (left side of the viewers perspective).
+- Arms crossed: Will trigger a countdown, then take a picture.
+
+Additionally the drone will keep its position relative to the persons face centerpoint when no pose can be detected.
+
+> A documentation of the codebase can be found here: [Documentation](https://baumwollboebele.github.io/autonnomous_selfie_drone/)
+
 
 <hr/>
 
-## Author
+# Getting Started
 
-[Felix Hamburger](https://github.com/Baumwollboebele)
+The project was written with `Python 3.9.7`, it is highly recommended to use this version 
+if you want to run the project.
 
-## Tello Drone
+1. Install the requirements:</br>
+```pip install -r requirements.txt```
+
+2. Turn on your Tello Education and connect to its WLAN.
+
+3. Change to the directory `/source` and run the Main.py file:</br>
+```python Main.py```
+
+
+# Technical Details
 
 <img style="float: right;" src="/images/tello_drone.jpg" height="400"/>
 
@@ -50,20 +70,9 @@ https://baumwollboebele.github.io/autonnomous_selfie_drone/
 |Energy| 4.18 Wh|
 
 
-## Third Party
+# Third Party
 
 Mediapipe:
 https://google.github.io/mediapipe/solutions/pose</br>
 DJITelloPy:
 https://github.com/damiafuentes/DJITelloPy/
-## Getting Started
-
-1. Install the requirements:</br>
-```pip install -r requirements.txt```
-
-2. Turn on your Tello Education and connect to its WLAN.
-
-3. Change to the directory `source` and start the project:</br>
-```python Main.py```
-
-
