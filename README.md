@@ -12,6 +12,7 @@
 # Summary
 
 <img style="float: right;" src="/images/tello_drone.jpg" height="200"/>
+
 This repository contains the code and documentation of an autonomous selfie drone.
 The drone used for this project was the [Tello](https://www.ryzerobotics.com/de/tello) drone from Ryze.
 
