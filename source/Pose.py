@@ -78,7 +78,7 @@ class Pose():
             Right wrist on the left side of the left wrist.
         """
 
-        if right_wrist_x < left_wrist_x:
+        if right_wrist_x > left_wrist_x:
             return True
         else:
             return False

@@ -54,7 +54,7 @@ def main():
             left_shoulder_y = int(landmarks[11].y*h)
 
             # Taking pictures
-            if (pose_detection.arms_crossed(left_wrist_x, right_wrist_x)
+            if (pose_detection.arms_crossed(right_wrist_x, left_wrist_x)
                and not taking_picture):
 
                 taking_picture = True
