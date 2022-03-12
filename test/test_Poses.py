@@ -10,7 +10,7 @@ class TestPoseDetection():
   def pose_detection(self):
     return Pose()
 
-  def test_left_arm_up(self,pose_detection):
+  def test_left_arm_up(self, pose_detection):
     """Testmethod for the function left_arm_up in the Pose Module.
 
     Args:

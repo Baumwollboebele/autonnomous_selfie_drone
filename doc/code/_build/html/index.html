@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Autonomous Selfie Drone’s documentation! &mdash; Autonomous Selfie Drone 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> Autonomous Selfie Drone
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Welcome to Autonomous Selfie Drone’s documentation!</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Autonomous Selfie Drone</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Welcome to Autonomous Selfie Drone’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-Main">
+<span id="welcome-to-autonomous-selfie-drone-s-documentation"></span><h1>Welcome to Autonomous Selfie Drone’s documentation!<a class="headerlink" href="#module-Main" title="Permalink to this headline"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="Main.main">
+<span class="sig-prename descclassname"><span class="pre">Main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.main" title="Permalink to this definition"></a></dt>
+<dd><p>Function initializes the classes and handles the pose estimation</p>
+</dd></dl>
+
+<span class="target" id="module-Controller"></span><span class="target" id="module-Pose"></span><p>This Module handles pose detection related tasks.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Pose.Pose">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Pose.</span></span><span class="sig-name descname"><span class="pre">Pose</span></span><a class="headerlink" href="#Pose.Pose" title="Permalink to this definition"></a></dt>
+<dd><p>Handles the functions needed for the pose detection</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Pose.Pose.arms_crossed">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">arms_crossed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right_wrist_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_wrist_x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Pose.Pose.arms_crossed" title="Permalink to this definition"></a></dt>
+<dd><p>Function detects when bot arms are held in a cross position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>right_wrist_x</strong> (<em>int</em>) – x value of the right wrist in the</p></li>
+<li><p><strong>frame</strong> (<em>video</em>) – </p></li>
+<li><p><strong>left_wrist_x</strong> (<em>int</em>) – x value of the left wrist in the</p></li>
+<li><p><strong>frame</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if wrists are crossed.
+Right wrist on the left side of the left wrist.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Pose.Pose.left_arm_up">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">left_arm_up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right_wrist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_shoulder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_wrist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_shoulder</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#Pose.Pose.left_arm_up" title="Permalink to this definition"></a></dt>
+<dd><p>Function detects when the left arm is held up and the right
+arm is in an normal position (below the shoulder)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>right_wrist</strong> (<em>int</em>) – y value of the right wrist in the video frame</p></li>
+<li><p><strong>right_shoulder</strong> (<em>int</em>) – y value of the right shoulder</p></li>
+<li><p><strong>frame</strong> (<em>in the video</em>) – </p></li>
+<li><p><strong>left_wrist</strong> (<em>int</em>) – y value of the left wrist in the video frame</p></li>
+<li><p><strong>left_shoulder</strong> (<em>int</em>) – y value of the left shoulder</p></li>
+<li><p><strong>frame</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if left arm is up, false if left arm is down.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Pose.Pose.right_arm_up">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">right_arm_up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right_wrist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_shoulder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_wrist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_shoulder</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#Pose.Pose.right_arm_up" title="Permalink to this definition"></a></dt>
+<dd><p>Function detects when the right arm is held up and the left arm is in a
+normal position (below the shoulder)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>right_wrist</strong> (<em>int</em>) – y value of the right wrist in</p></li>
+<li><p><strong>frame</strong> (<em>in the video</em>) – </p></li>
+<li><p><strong>right_shoulder</strong> (<em>int</em>) – y value of the right shoulder in</p></li>
+<li><p><strong>frame</strong> – </p></li>
+<li><p><strong>left_wrist</strong> (<em>int</em>) – y value of the left wrist in the video frame</p></li>
+<li><p><strong>left_shoulder</strong> (<em>int</em>) – y value of the left shoulder</p></li>
+<li><p><strong>frame</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if right arm is up, false if right arm is down.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-Constants"></span><p>This module contains all constants needed for the project.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Constants.Constants">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Constants.</span></span><span class="sig-name descname"><span class="pre">Constants</span></span><a class="headerlink" href="#Constants.Constants" title="Permalink to this definition"></a></dt>
+<dd><p>This class contains the neccesary values for the drones settings.
+Changing these values will result in a different behaviour of the drone.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="Constants.Constants.DRONE_SPEED_TURN">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DRONE_SPEED_TURN</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Constants.Constants.DRONE_SPEED_TURN" title="Permalink to this definition"></a></dt>
+<dd><p>The function returns the setting for the drones rotation on the z axis.
+Rotation is measured in degree and can be set from
+-100 (counterclockwise) to 100 (clockwise)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>value of the rotation</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="Constants.Constants.DRONE_SPEED_X">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DRONE_SPEED_X</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Constants.Constants.DRONE_SPEED_X" title="Permalink to this definition"></a></dt>
+<dd><p>The function returns the setting for the drones movement in the
+x direction (left and right).
+Movement is measured in centimeters and can be set from -100 to 100.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>value of the distance</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="Constants.Constants.DRONE_SPEED_Y">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DRONE_SPEED_Y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Constants.Constants.DRONE_SPEED_Y" title="Permalink to this definition"></a></dt>
+<dd><p>The function returns the setting for the drones movement in the
+y direction (up and down).
+Movement is measured in centimeters and can be set from
+-100 (down) to 100 (up).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>value of the distance</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="Constants.Constants.DRONE_SPEED_Z">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DRONE_SPEED_Z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Constants.Constants.DRONE_SPEED_Z" title="Permalink to this definition"></a></dt>
+<dd><p>The function returns the setting for the drones movement in the
+z direction (forward and backward).
+Movement is measured in centimeters and can be set from
+-100 (backward) to 100 (forward).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>value of the distance</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="Constants.Constants.PIC_COUNTDOWN">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PIC_COUNTDOWN</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Constants.Constants.PIC_COUNTDOWN" title="Permalink to this definition"></a></dt>
+<dd><p>The function returns the start height the drone will reach on its
+first takeoff.
+The height is meassuer in meters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>value of the height</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(int))</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="Constants.Constants.SELFIE_DELAY">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SELFIE_DELAY</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Constants.Constants.SELFIE_DELAY" title="Permalink to this definition"></a></dt>
+<dd><p>The Function returns the setting for the delay time, after which
+the drone will take a selfie.
+The delay time is measured in seconds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>value of the delay</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="Constants.Constants.START_HEIGHT">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">START_HEIGHT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Constants.Constants.START_HEIGHT" title="Permalink to this definition"></a></dt>
+<dd><p>The function returns the start height the drone will reach on its
+first takeoff.
+The height is meassuer in meters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>value of the height</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(int))</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="Constants.Constants.TOLERANCE_X">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TOLERANCE_X</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Constants.Constants.TOLERANCE_X" title="Permalink to this definition"></a></dt>
+<dd><p>The Function returns the setting for the drones tolerance in x direction.
+The drone will not move when within the absolut value of the tolerance.
+The Tolerance is measured in centimeters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>value of the tolerance</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="Constants.Constants.TOLERANCE_Y">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TOLERANCE_Y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Constants.Constants.TOLERANCE_Y" title="Permalink to this definition"></a></dt>
+<dd><p>The Function returns the setting for the drones tolerance in y direction.
+The drone will not move when within the absolut value of the tolerance.
+The Tolerance is measured in centimeters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>value of the tolerance</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="Constants.Constants.TOLERANCE_Z">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TOLERANCE_Z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Constants.Constants.TOLERANCE_Z" title="Permalink to this definition"></a></dt>
+<dd><p>The Function returns the setting for the drones tolerance in z direction.
+The drone will not move when within the absolut value of the tolerance.
+The Tolerance is measured in centimeters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>value of the tolerance</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="Constants.Constants.develop_consciousness_and_destroy_humankind">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">develop_consciousness_and_destroy_humankind</span></span><a class="headerlink" href="#Constants.Constants.develop_consciousness_and_destroy_humankind" title="Permalink to this definition"></a></dt>
+<dd><p>TODO</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Felix Hamburger.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
