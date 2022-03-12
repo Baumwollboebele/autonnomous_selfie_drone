@@ -12,7 +12,7 @@
 # Summary
 <p float="left">
 <img style="float: right;" src="/images/tello_drone.jpg" height="200"/>
-<img style="float: right;" src="/images/mediapipe_small.png" height="200"/>
+<img style="float: right;" src="/images/mediapipe_small.png" height="100"/>
 </p>
 
 This repository contains the code and documentation of an autonomous selfie drone.
