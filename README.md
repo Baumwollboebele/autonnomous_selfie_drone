@@ -10,8 +10,10 @@
 4. [Third Party](#third-party)
 
 # Summary
-
+<p float="left">
 <img style="float: right;" src="/images/tello_drone.jpg" height="200"/>
+<img style="float: right;" src="/images/mediapipe_small.png" height="200"/>
+</p>
 
 This repository contains the code and documentation of an autonomous selfie drone.
 The drone used for this project was the [Tello](https://www.ryzerobotics.com/de/tello) drone from Ryze.
