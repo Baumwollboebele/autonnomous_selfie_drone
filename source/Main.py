@@ -6,12 +6,16 @@ import doctest
 
 from Controller import Controller
 from PoseDetection import PoseDetection
+from Constants import Constants
 
 
 def main():
     mpPose = mp.solutions.pose
     pose = mpPose.Pose()
     mpDraw = mp.solutions.drawing_utils
+
+    taking_picture = False
+    pic_countdown = None
 
     pTime = 0
 
@@ -24,6 +28,7 @@ def main():
     #####################
 
     pose_detection = PoseDetection()
+    const = Constants()
 
     while True:
         img = controller.get_stream()
@@ -53,22 +58,36 @@ def main():
             right_elbow_x = int(landmarks[13].x*w)
             right_elbow_y = int(landmarks[13].y*h)
 
+            print(f"Right Wrist {right_wrist_x}")
+            print(f"left Wrist {left_wrist_x}")
+
             if pose_detection.arms_crossed(right_wrist_x, right_wrist_y,
                                            left_wrist_x, left_wrist_y,
                                            right_elbow_x, right_elbow_y,
-                                           left_elbow_x, left_elbow_y):
-                pass
+                                           left_elbow_x, left_elbow_y) and not taking_picture:
 
-            elif pose_detection.right_arm_up(right_wrist_y, right_shoulder_y,
-                                             left_wrist_y, left_shoulder_y):
+                taking_picture = True
+                pic_countdown = time.time()
+
+            if taking_picture:
+                cv2.putText(img, "Taking Picture", (50, 350),
+                            cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
+
+                if (time.time() - pic_countdown) > const.PIC_COUNTDOWN:
+                    print("Picture taken !")
+                    cv2.imwrite("images/img1.png", controller.get_stream())
+                    taking_picture = False
+
+            if pose_detection.right_arm_up(right_wrist_y, right_shoulder_y,
+                                           left_wrist_y, left_shoulder_y):
                 controller.move_pose("right")
-                cv2.putText(img, "Pose: RIGHT", (50, 250),
+                cv2.putText(img, "Pose: Left", (50, 250),
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
 
             elif pose_detection.left_arm_up(right_wrist_y, right_shoulder_y,
                                             left_wrist_y, left_shoulder_y):
                 controller.move_pose("left")
-                cv2.putText(img, "Pose: LEFT", (50, 250),
+                cv2.putText(img, "Pose: Right", (50, 250),
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
 
             else:

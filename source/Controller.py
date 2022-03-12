@@ -5,7 +5,7 @@ from djitellopy import tello
 class Controller():
     def __init__(self) -> None:
         """
-        _summary_
+        Initialoization of class variables.
         """
 
         self.const = Constants()
@@ -18,24 +18,35 @@ class Controller():
         self.turn_velocity = 0
 
     def start(self):
+        """
+        _summary_
+        """
         self.drone.connect()
         self.drone.takeoff()
         self.drone.streamon()
 
     def battery(self):
+        """
+        Function prints the current battery level of the drone in percent.
+        """
         print(f"Battery at {self.drone.get_battery()}%")
 
     def set_velocity(self, vel):
+        """
+        _summary_
+
+        Args:
+            vel (_type_): _description_
+        """
         self.drone.set_speed(vel)
 
-    def move(self, x, y, distance):
+    def move(self, x, y, z):
         """
         _summary_
 
         Args:
             x (_type_): _description_
             y (_type_): _description_
-            distance (_type_): _description_
         """
 
         self.reset()
@@ -81,7 +92,7 @@ class Controller():
         _summary_
 
         Args:
-            pose (_type_): _description_
+            pose (string): _description_
         """
 
         self.reset()
@@ -98,16 +109,31 @@ class Controller():
         self.drone.send_rc_control(self.right_left_velocity, 0, 0, 0)
 
     def stop(self):
+        """
+        _summary_
+        """
         self.drone.send_rc_control(0, 0, 0, 0)
 
     def start_height(self):
+        """
+        _summary_
+        """
         self.drone.send_rc_control(0, 0, self.const.START_HEIGHT, 0)
 
     def reset(self):
+        """
+        _summary_
+        """
         self.up_down_velocity = 0
         self.right_left_velocity = 0
         self.forward_backward_velocity = 0
         self.turn_velocity = 0
 
     def get_stream(self):
+        """
+        _summary_
+
+        Returns:
+            _type_: _description_
+        """
         return self.drone.get_frame_read().frame

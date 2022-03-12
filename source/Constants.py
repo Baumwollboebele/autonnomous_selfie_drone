@@ -118,3 +118,14 @@ class Constants():
         TODO
         """
         return
+
+    @property
+    def PIC_COUNTDOWN(self) -> int:
+        """The function returns the start height the drone will reach on its
+        first takeoff.
+        The height is meassuer in meters.
+
+        Returns:
+            (int)): value of the height
+        """
+        return 4
