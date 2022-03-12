@@ -49,9 +49,21 @@ This project aims to build an autonomous moving drone with the possibility to co
 |Battery Type| LiPo|
 |Energy| 4.18 Wh|
 
+
+## Third Party
+
+Mediapipe:
+https://google.github.io/mediapipe/solutions/pose</br>
+DJITelloPy:
+https://github.com/damiafuentes/DJITelloPy/
 ## Getting Started
 
-Install the requirements:</br>
+1. Install the requirements:</br>
 ```pip install -r requirements.txt```
 
-## Paper
+2. Turn on your Tello Education and connect to its WLAN.
+
+3. Change to the directory `source` and start the project:</br>
+```python Main.py```
+
+

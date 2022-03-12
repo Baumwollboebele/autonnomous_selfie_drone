@@ -20,6 +20,7 @@ def main():
 
     taking_picture = False
     pic_countdown = None
+    img_count = 0
 
     pTime = 0
 
@@ -64,7 +65,9 @@ def main():
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
 
                 if (time.time() - pic_countdown) > const.PIC_COUNTDOWN:
-                    cv2.imwrite("images/img1.png", controller.get_stream())
+                    cv2.imwrite(f"images/img{img_count}.png",
+                                controller.get_stream())
+                    img_count += 1
                     taking_picture = False
 
             # Reaction to poses
