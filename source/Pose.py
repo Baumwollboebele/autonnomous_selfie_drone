@@ -45,7 +45,7 @@ class Pose():
             right_wrist (int): y value of the right wrist in
             the video frame
 
-            right_shoulder (int): y value of the right shoulder in 
+            right_shoulder (int): y value of the right shoulder in
             the video frame
 
             left_wrist (int): y value of the left wrist in the video frame
