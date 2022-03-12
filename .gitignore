@@ -1,6 +1,11 @@
 # Drone Images
 source/images/
 
+
+# Doc for GHPages
+doctrees/
+.buildinfo
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
