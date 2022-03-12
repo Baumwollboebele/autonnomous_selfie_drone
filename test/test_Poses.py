@@ -1,5 +1,6 @@
 import pytest
-from source.PoseDetection import PoseDetection
+from source.Pose import Pose
+
 
 class TestPoseDetection():
   """
@@ -7,7 +8,7 @@ class TestPoseDetection():
   """
   @pytest.fixture
   def pose_detection(self):
-    return PoseDetection()
+    return Pose()
   
   def test_left_arm_up(self,pose_detection):
     """Testmethod for the function left_arm_up in the PoseDetection Module.

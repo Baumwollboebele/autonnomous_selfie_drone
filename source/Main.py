@@ -5,11 +5,15 @@ import time
 import doctest
 
 from Controller import Controller
-from PoseDetection import PoseDetection
+from Pose import Pose
 from Constants import Constants
 
 
 def main():
+    """
+    Function initializes the classes and handles the pose estimation
+    """
+
     mpPose = mp.solutions.pose
     pose = mpPose.Pose()
     mpDraw = mp.solutions.drawing_utils
@@ -25,9 +29,8 @@ def main():
     controller.battery()
     controller.set_velocity(100)
     controller.start_height()
-    #####################
 
-    pose_detection = PoseDetection()
+    pose_detection = Pose()
     const = Constants()
 
     while True:
@@ -46,25 +49,12 @@ def main():
             left_wrist_x = int(landmarks[15].x*w)
             left_wrist_y = int(landmarks[15].y*h)
 
-            # right_shoulder_x = int(landmarks[12].x*w)
             right_shoulder_y = int(landmarks[12].y*h)
-
-            # left_shoulder_x = int(landmarks[11].x*w)
             left_shoulder_y = int(landmarks[11].y*h)
 
-            left_elbow_x = int(landmarks[14].x*w)
-            left_elbow_y = int(landmarks[14].y*h)
-
-            right_elbow_x = int(landmarks[13].x*w)
-            right_elbow_y = int(landmarks[13].y*h)
-
-            print(f"Right Wrist {right_wrist_x}")
-            print(f"left Wrist {left_wrist_x}")
-
-            if pose_detection.arms_crossed(right_wrist_x, right_wrist_y,
-                                           left_wrist_x, left_wrist_y,
-                                           right_elbow_x, right_elbow_y,
-                                           left_elbow_x, left_elbow_y) and not taking_picture:
+            # Taking pictures
+            if (pose_detection.arms_crossed(left_wrist_x, right_wrist_x)
+               and not taking_picture):
 
                 taking_picture = True
                 pic_countdown = time.time()
@@ -74,10 +64,10 @@ def main():
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
 
                 if (time.time() - pic_countdown) > const.PIC_COUNTDOWN:
-                    print("Picture taken !")
                     cv2.imwrite("images/img1.png", controller.get_stream())
                     taking_picture = False
 
+            # Reaction to poses
             if pose_detection.right_arm_up(right_wrist_y, right_shoulder_y,
                                            left_wrist_y, left_shoulder_y):
                 controller.move_pose("right")
@@ -90,6 +80,7 @@ def main():
                 cv2.putText(img, "Pose: Right", (50, 250),
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
 
+            # Autonomous movement
             else:
 
                 nose_x, nose_y = int(landmarks[0].x*w), int(landmarks[0].y*h),
@@ -115,10 +106,10 @@ def main():
                 distance_to_x = (nose_x) - (w/2)
                 distance_to_y = (nose_y) - (h/2)
 
-                controller.move(distance_to_x, distance_to_y, 0)
+                controller.move(distance_to_x, distance_to_y)
 
         else:
-            pass
+            controller.stop()
 
         cv2.circle(img, (round(w/2), round(h/2)), 5, (0, 255, 0), cv2.FILLED)
 

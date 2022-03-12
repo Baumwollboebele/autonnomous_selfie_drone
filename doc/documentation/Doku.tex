@@ -73,7 +73,7 @@
 	%----------------------------------------------------------------------------------------
 	
 	\HRule \\[0.4cm]
-	{ \huge \bfseries Autonomous selfi drone using pose recognition}\\[0.4cm] % Title of your document
+	{ \huge \bfseries Prototype of a autonomous selfi drone utilizing pose estimation}\\[0.4cm] % Title of your document
 	\HRule \\[1.5cm]
 	
 	%----------------------------------------------------------------------------------------
@@ -130,13 +130,8 @@ The world is growing fast
 \cite{tello_idea}
 
 \section{Requirements}
-
-
-\section{Implementation}
-
-\subsection{BlazePose}
-Blaze Pose \cite{BLP_GITHUB} \cite{DBLP:journals/corr/abs-2006-10204} %\cite{Xu_2020_CVPR}
-
+\subsection{Mediapipe}
+\subsection{djitellopy}
 \subsection{Drone}
 
 The drone used for this project is the tello drone from dji with the following technical details:
@@ -150,6 +145,7 @@ The drone used for this project is the tello drone from dji with the following t
 
 \begin{center}
 	\begin{tabular}{ l  l} 
+	\hline
 	 \textbf{Aircraft:} & Weight: 80g\\
 	 & Dimensions: 98×92.5×41 mm  \\
 	 & Propeller: 7,62cm\\
@@ -172,12 +168,15 @@ The drone used for this project is the tello drone from dji with the following t
 	 & FOV: 82.6° \\
 	 & Video: HD720P30\\
 	 & Format: JPG(Photo); MP4(Video)\\
-	 & Electric Image Stabilization: Yes
+	 & Electric Image Stabilization: Yes\\
+	 \hline
 	\end{tabular}
 \end{center}
 
+\section{Implementation}
 
-\section{Results}
+\section{Conclusion}
+\section{Improvements}
 
 
 \pagebreak
@@ -190,4 +189,5 @@ The drone used for this project is the tello drone from dji with the following t
 \lstinputlisting[language=Python,caption=Main.py]{../../source/Main.py}
 \lstinputlisting[language=Python,caption=Controller.py]{../../source/Controller.py}
 \lstinputlisting[language=Python,caption=Constants.py]{../../source/Constants.py}
+\lstinputlisting[language=Python,caption=PoseDetection.py]{../../source/PoseDetection.py}
 \end{document}

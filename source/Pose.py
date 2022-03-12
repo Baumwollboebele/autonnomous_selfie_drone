@@ -3,7 +3,7 @@ This Module handles pose detection related tasks.
 """
 
 
-class PoseDetection():
+class Pose():
     """
     Handles the functions needed for the pose detection
     """
@@ -45,8 +45,8 @@ class PoseDetection():
             right_wrist (int): y value of the right wrist in
             the video frame
 
-            right_shoulder (int): y value of the right shoulder in t
-            he video frame
+            right_shoulder (int): y value of the right shoulder in 
+            the video frame
 
             left_wrist (int): y value of the left wrist in the video frame
 
@@ -62,22 +62,20 @@ class PoseDetection():
         return False
 
     @staticmethod
-    def arms_crossed(right_wrist_x, right_wrist_y,
-                     left_wrist_x, left_wrist_y,
-                     right_elbow_x, right_elbow_y,
-                     left_elbow_x, left_elbow_y):
+    def arms_crossed(right_wrist_x, left_wrist_x):
         """
-        _summary_
+        Function detects when bot arms are held in a cross position.
 
         Args:
-            right_wrist_x (_type_): _description_
-            right_wrist_y (_type_): _description_
-            left_wrist_x (_type_): _description_
-            left_wrist_y (_type_): _description_
-            right_elbow_x (_type_): _description_
-            right_elbow_y (_type_): _description_
-            left_elbow_x (_type_): _description_
-            left_elbow_y (_type_): _description_
+            right_wrist_x (int): x value of the right wrist in the
+            video frame
+
+            left_wrist_x (int): x value of the left wrist in the
+            video frame
+
+        Returns:
+            bool: True if wrists are crossed.
+            Right wrist on the left side of the left wrist.
         """
 
         if right_wrist_x > left_wrist_x:
