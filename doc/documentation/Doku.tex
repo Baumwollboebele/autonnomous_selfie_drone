@@ -9,6 +9,7 @@
 \usepackage{biblatex}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{float}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -123,25 +124,53 @@
 \pagebreak
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Introduction
 \section{Introduction}
-The world is growing fast
+Drones have long since arrived in the living rooms of ordinary households. They are no longer just dreams of the future that only rich tech nerds could afford.
+\\\\
+They are available on the market in numerous variations.
+From the small indoor drone, which can fly only a few meters high, to the long-range drone that can be remotely controlled over several kilometers.
+\\\\
+They vary from manually controlled drones to completely autonomous systems that only need to be turned on to do their job.
+\\\\
+In this project I would like to develop an autonomous prototype and gain first experiences in the field of autonomous UAVs.
+The aim is to apply ready-made solutions which act together and control a drone which is autonomous and is controlled via gesture control.
 
-\cite{tello_idea}
+\subsection{Objective}
+At the beginning I would like to define some core features which have to be 
+implemented in the course of the project.
+\begin{itemize}
+	\item The drone must be able to move autonomously and follow the oerpator.
+	\item The drone must be able to be controlled by gestures.
+	\item The drone must be able to take a photo of the operator.
+\end{itemize}
 
+
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Requirements
 \section{Requirements}
-\subsection{Mediapipe}
-\subsection{djitellopy}
+This section lists the three most important parts for this project:
+\begin{itemize}
+	\item \textbf{Drone:} The Tello drone used in this project.
+	\item \textbf{DJITelloPy:} The library used to control the drone.
+	\item \textbf{Mediapipe (BlazePose):} The Framework (CNN) used in this project.
+	
+\end{itemize}
 \subsection{Drone}
-
-The drone used for this project is the tello drone from dji with the following technical details:
-
-\begin{figure}[h!]
+The Tello drone from Ryze Tech is best suited for this project. Since this project is mainly 
+about the combination of different ready-made solutions, the time needed to build a drone yourself would be too great.
+\\\\
+Ryze Tech offers with its Tello drone a complete solution under 100€ which is additionally equipped with a software development kit. 
+The drone itself is small and suitable for indoor use.
+\\\\
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{images/tello_front.jpeg}
+	\includegraphics[scale=0.4]{images/tello_front.jpeg}
 	\caption{Tello Drone}
 	\label{tello_drone}
 \end{figure}
+
+The following table provides a clear overview of the technical details:
 
 \begin{center}
 	\begin{tabular}{ l  l} 
@@ -173,14 +202,184 @@ The drone used for this project is the tello drone from dji with the following t
 	\end{tabular}
 \end{center}
 
+
+
+\subsection{Tello SDK}
+
+The Tello SDK\cite{TelloSDK} is the official software development kit for the Tello drone. 
+The SDK connects the drone via Wifi to a UDP port and lets the user control it via
+text commands.
+\\
+During startup of the drone, it opens up a Wi-Fi channel, where the drone can be 
+reached under the IP address IP 192.168.10.1.\\
+
+The drone communicates and receives messages over three different ports:\\
+\begin{itemize}
+	\item \textbf{UDP PORT:8889}: The drone will receive commands over this port.
+	\item \textbf{UDP PORT:8890}: The drone will send its state to this port.
+	\item \textbf{PORT:11111}: The drone will send the video stream to this port.
+\end{itemize}
+
+The SDK includes three basic command types:\\\\
+\textbf{Control Commands:} Command to send a movement text command to the drone. It will return \textit{ok} if the command was succesfully executed 
+and \textit{error} if the command is unsuccesful.\\\\
+\textbf{Read Commamnds:} Command to request parameters like batterylevel. It will return the parameters of the requested parameters.\\\\
+\textbf{Set Commands:} Command to set parameters like the drones speed. It will return \textit{ok} if the command was succesfully executed 
+and \textit{error} if the command is unsuccesful.
+
+\begin{center}
+	\begin{tabular}{c | c | c} 
+	\hline
+	 Command & Description & Possible response\\
+	 \hline
+	 takeoff & Tello auto takeoff & ok, error \\
+	 streamon & Set video stream on & ok,error\\
+	 right & fly right x centimeters & ok,error\\
+	 battery? & get current battery level in percent & 0-100\\
+	\end{tabular}
+\end{center}
+
+The Tello SDK itself offers a variety of different commands which would be 
+sufficient for operating the drone both autonomously and via poses.
+
+\subsubsection{DJITelloPy}
+
+DJITelloPy\cite{DJITelloPy} utilizes the Tello SDK and provides similar commands which ulimately
+build on the commands of the Tello SDK.
+\\\\
+But concerning the video streaming, the Tello SDK canbe quite tricky because 
+someone has to parse the udp stream itself to receive the neccesary video data.
+\\
+DJITelloPy offers an easy solution for video streaming with return values 
+which can be directly used with OpenCV.
+
+\subsection{Mediapipe}
+Mediapipe\cite{Mediapipe} is an open source framework from Gogle which offers a 
+variety of machine learning solutions.
+
+One of its solutions is its pose estimation which is a high-fidelity body pose tracking capable of tracking 33 3D Landmarks.+
+Mediapipe Pose utiliuzes the BlazePose\cite{BlazePosePaper} Convolutional Neural Network which will be described in the following section.
+
+\subsubsection{Pose}
+
+The Pose Solution from Mediapipe operates in two steps.
+First the person including two additional keypoints are detected that allow to describe the 
+describe the human body center, rotation and scale as a circle.
+Then the BlazePose model predicts the location of 33 3D Landmarks as seen in the following image.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/mediapipe_landmarks.png}
+	\caption{BlazePose Landmarks}
+	\label{mediapipe_landmarks}
+\end{figure}
+
+The modle outouts a list of pose landmarks which consist of:
+\begin{itemize}
+	\item X Coordinate of the landmark normalized from 0.0 to 1.0.
+	\item Y Coordinate of the landmark normalized from 0.0 to 1.0.
+	\item Z, which represents the depth of the landmark with the depth at the midpoint of hips being the origin.
+	\item Visibility of the landmark with a probability from 0.0 to 1.0.
+\end{itemize}
+
+\pagebreak
+%%%%%%%%%%%%%% IMplementation
 \section{Implementation}
-\subsection{General Structure}
-\subsection{Autonomous Movement}
+This chapter explains how the algorithm for controlling the drone works. This chapter is divided into three parts.
+The first part explains how the state machine works.
+The second part which explains how the drone reacts to poses.
+and the third part is explaining how the drone flies autonomously.
+
+\subsection{Algorithm}
+The algorithm itself works as a state machine where each frame is evaluated 
+individually based on the applied pose estimation. 
+
+At the beginning of the loop, the frame is read and Pose Estimation is applied to the frame.
+If one of the three implemented poses is detected the following steps will be initiated:
+\begin{itemize}
+	\item \textbf{Arms crossed:} The drone takes a picture.
+	\item \textbf{Right arm up:} The drone hovers to the left (right from drone view)
+	\item \textbf{Left arm iup:} The drone hovers to the right (left from drone view)
+\end{itemize}
+
+If no pose is detected in a frame, the drone hovers autonomously following the operator.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/flow_chart_code.png}
+	\caption{Flowchart of the states the drone can enter}
+	\label{flowchart_code}
+\end{figure}
+
+In order to be able to follow the following explanations, it is important to mention that the recorded frames have their 
+zero point in the upper left edge of the image.\\
+This is shown here:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/video_frame.png}
+	\caption{Illustration of the video frame}
+	\label{video_frame}
+\end{figure}
+
 \subsection{Poses}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/right_arm_up.png}
+	\caption{Pictogram of the pose "right arm up"}
+	\label{right_arm_up}
+\end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/left_arm_up.png}
+	\caption{Pictogram of the pose "left arm up"}
+	\label{left_arm_up}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/arms_crossed.png}
+	\caption{Pictogram of the pose "arms crossed"}
+	\label{arms_crossed}
+\end{figure}
+\subsection{Autonomous Movement}
+
+
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Conclusion
 \section{Conclusion}
-\section{Improvements}
+In the final test, the drone held its position surprisingly well considering the simplicity of the algorithm.
+The implemented poses were recognized flawlessly and there is no problem with the ambiguity of certain poses, which can only be achieved by unnatural arm movements.
+This does not occur in practical use.
+The autonomous flight capability of the drone was also good, even if the tresholds are not optimally adjusted, which manifests itself as oversteering in the movements.
 
+
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Improvements
+\section{Improvements}
+\textbf{Keeping the drone the same distance:}\\
+The drone is currently not able to move in z direction. First approaches where made by calculating
+shoulder length and keep distance between a set threshold. 
+This resulted not in the desired outcome since it would only work if the person stands in a completly frontal pose.
+If shoulders are twisted in, the algorithm would make a wrong distance correction.
+\\\\
+Additionally to the landmarks x and y coordinates, BlazePose calculates a third z value 
+which indicates the depth of the landmark to the center of the hips. 
+With this information it should be possible to accurately determine the drones distance to the operator.
+\\\\
+\textbf{Fine tuning of thresholds and otehr settings:}\\
+In the current setting, the drones performance is good enough to do 
+all tasks mentioned in the previous chapters. Though sometimes thresholds are set to high, 
+resulting in an overturn which lead to a corrective movement. This is preceived as a shaking of the drone.
+By tuning the setting parameters a smoother experience could be achieved.
+\\\\
+\textbf{Operating the drone via App:}\\
+Among other things BlazePose was chosen because it works very efficiently.
+Ultimately the drone acts as an selfie drone you would take on a trip or walk, 
+thus the algorithm should work on a portable device, preferably a mobile phone.\\
+The paper states\cite{BlazePosePaper} that BlazePose is able to perform up to 44fps on a Google Pixel 3.
+Thus it would be possible to design an Application which can handle the functions implemented in this project. 
 
 \pagebreak
 \listoffigures

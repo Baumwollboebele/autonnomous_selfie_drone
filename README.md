@@ -80,5 +80,7 @@ https://google.github.io/mediapipe/solutions/pose</br>
 DJITelloPy:
 https://github.com/damiafuentes/DJITelloPy/<br>
 BlazePose:
-https://arxiv.org/abs/2006.10204
+https://arxiv.org/abs/2006.10204<br>
+Inspiration:
+https://www.youtube.com/watch?v=RHRQoaqQIgo&t=417s&ab_channel=geaxgx1
 
