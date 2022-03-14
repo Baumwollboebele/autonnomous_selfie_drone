@@ -17,8 +17,8 @@ class TestPoseDetection():
         pose_detection (Pose): Pose Object
     """
     assert pose_detection.left_arm_up(0, 0, 0, 0) == False
-    assert pose_detection.left_arm_up(60, 50, 40, 50) == False
-    assert pose_detection.left_arm_up(40, 50, 60, 50) == True
+    assert pose_detection.left_arm_up(60, 50, 40, 50) == True
+    assert pose_detection.left_arm_up(40, 50, 60, 50) == False
 
   def test_right_arm_up(self, pose_detection):
     """Testmethod for the function right_arm_up in the Pose Module.
@@ -27,8 +27,8 @@ class TestPoseDetection():
         pose_detection (Pose): Pose Object
     """
     assert pose_detection.right_arm_up(0, 0, 0, 0) == False
-    assert pose_detection.right_arm_up(60, 50, 40, 50) == True
-    assert pose_detection.right_arm_up(40, 50, 60, 50) == False
+    assert pose_detection.right_arm_up(60, 50, 40, 50) == False
+    assert pose_detection.right_arm_up(40, 50, 60, 50) == True
 
   def test_arms_crossed(self, pose_detection):
     """
