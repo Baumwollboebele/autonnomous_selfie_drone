@@ -30,7 +30,7 @@ class Pose():
             bool: True if left arm is up, false if left arm is down.
         """
 
-        if left_wrist > left_shoulder and right_wrist < right_shoulder:
+        if left_wrist < left_shoulder and right_wrist > right_shoulder:
             return True
         return False
 
@@ -57,7 +57,7 @@ class Pose():
             bool: True if right arm is up, false if right arm is down.
         """
 
-        if right_wrist > right_shoulder and left_wrist < left_shoulder:
+        if right_wrist < right_shoulder and left_wrist > left_shoulder:
             return True
         return False
 

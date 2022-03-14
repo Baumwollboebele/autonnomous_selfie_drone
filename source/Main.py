@@ -73,14 +73,14 @@ def main():
             # Reaction to poses
             if pose_detection.right_arm_up(right_wrist_y, right_shoulder_y,
                                            left_wrist_y, left_shoulder_y):
-                controller.move_pose("right")
-                cv2.putText(img, "Pose: Left", (50, 250),
+                controller.move_pose("left")
+                cv2.putText(img, "Pose: Right", (50, 250),
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
 
             elif pose_detection.left_arm_up(right_wrist_y, right_shoulder_y,
                                             left_wrist_y, left_shoulder_y):
-                controller.move_pose("left")
-                cv2.putText(img, "Pose: Right", (50, 250),
+                controller.move_pose("right")
+                cv2.putText(img, "Pose: Left", (50, 250),
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
 
             # Autonomous movement
