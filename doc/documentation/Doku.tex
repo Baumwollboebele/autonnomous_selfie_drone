@@ -146,6 +146,9 @@ implemented in the course of the project.
 \end{itemize}
 
 
+
+
+
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Requirements
 \section{Requirements}
@@ -323,12 +326,32 @@ This is shown here:
 \end{figure}
 
 \subsection{Poses}
+
+This chapter explains how the three poses are recognized by the drone.\\\\
+
+To recognize the first pose four Landmakrs are needed.
+\begin{itemize}
+	\item Right Wrist
+	\item Left Wrist
+	\item Right shoulder
+	\item Left Shoulder
+\end{itemize}
+
+In a normal body posture, it is assumed that the left arm or wrist is below the left shoulder landmark.
+If the right wrist is now lifted above the right shoulder landmark, the drone recognizes that the right arm has been lifted.\\\\
+Here it is important to note that the returned x and y components behave inversely 
+since we have the zero point in the upper left edge of the screen.\\\\
+This means that an arm is considered lifted if its y values are lower than the y values of the shoulder landmark.\\\\
+If this pose is detected, the drone controller will give the command to fly the drone from its direction to the left.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/right_arm_up.png}
 	\caption{Pictogram of the pose "right arm up"}
 	\label{right_arm_up}
 \end{figure}
+We have a similar case when detecting the lift of the left arm. 
+Here, the larger/smaller comparisons must be reversed.\\\\
+If this pose is detected, the drone controller will give the command to fly the drone to the right.
 
 \begin{figure}[H]
 	\centering
@@ -337,6 +360,8 @@ This is shown here:
 	\label{left_arm_up}
 \end{figure}
 
+In the third pose, the drone should detect if the arms are crossed in front of the body.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/arms_crossed.png}
@@ -344,6 +369,28 @@ This is shown here:
 	\label{arms_crossed}
 \end{figure}
 \subsection{Autonomous Movement}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/positive_vector_length.png}
+	\caption{Movement if the vectorlength is positive}
+	\label{positive_vectortlength}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/negative_vector_length.png}
+	\caption{Movement if the vectorlength is negativ}
+	\label{negativ_vectortlength}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/vectorlength_between_treshold.png}
+	\caption{Drone is stalling if vectorlength is within the treshold}
+	\label{vectorlength_treshold}
+\end{figure}
+
 
 
 \pagebreak
