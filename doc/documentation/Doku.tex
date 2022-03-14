@@ -286,7 +286,7 @@ The modle outouts a list of pose landmarks which consist of:
 \end{itemize}
 
 \pagebreak
-%%%%%%%%%%%%%% IMplementation
+%%%%%%%%%%%%%% Implementation
 \section{Implementation}
 This chapter explains how the algorithm for controlling the drone works. This chapter is divided into three parts.
 The first part explains how the state machine works.
@@ -328,6 +328,7 @@ This is shown here:
 It must be noted, that everything the camera captures is mirrored, thus the left arm 
 in this picture correlates to the right arm in real live.
 This will become more obvious when we dive into the poses in detail.
+
 \subsection{Poses}
 
 This chapter explains how the three poses are recognized by the drone.\\\\
@@ -364,6 +365,11 @@ If this pose is detected, the drone controller will give the command to fly the 
 \end{figure}
 
 In the third pose, the drone should detect if the arms are crossed in front of the body.
+It is obvious that this position has ambiguities. To take a photo, the wrists could also be 
+held crosswise downwards.
+\\\\
+In the practical test, it turned out that this position is relatively 
+unnatural and therefore hardly ever occurs.
 
 \begin{figure}[H]
 	\centering
@@ -371,7 +377,24 @@ In the third pose, the drone should detect if the arms are crossed in front of t
 	\caption{Pictogram of the pose "arms crossed"}
 	\label{arms_crossed}
 \end{figure}
+
+For this prototype, only these three simple poses were implemented. 
+You can add as many poses as you like. 
+
 \subsection{Autonomous Movement}
+
+In addition to control by poses, the drone maneuvers completely autonomously when no pose is detected.
+This problem is solved by vector calculation.
+
+The following two images show how the drone behaves during autonomous flight.
+
+Pose estimation is used to detect the center of the face (nose). In addition, the center point of the camera image is calculated.
+
+Now a vector is drawn from the center of the camera image to the nose and its length is calculated.
+
+If the head is located to the right of the image, as in Figure 8, the length of the vector is positive. 
+From your point of view, the drone therefore flies to the left by the set movements settings.
+
 
 \begin{figure}[H]
 	\centering
@@ -380,12 +403,22 @@ In the third pose, the drone should detect if the arms are crossed in front of t
 	\label{positive_vectortlength}
 \end{figure}
 
+If, on the other hand, the center of the face (nose) is on the left side of the center of the image, the vector length is negative.
+The drone therefore flies to the right out of its own movement settings.
+
+Of course this is not only valid for the movement to the left and to the right which are calculated by the x-component of the vector.
+The calculation of the y component, i.e. the ascent and descent of the drone, works with the same method.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/negative_vector_length.png}
 	\caption{Movement if the vectorlength is negativ}
 	\label{negativ_vectortlength}
 \end{figure}
+
+If the vector length now reaches a certain threshold, the drone will no longer receive movement commands and 
+will hold its position until it leaves the threshold again.
+This is shown in Figure 10 as a yellow circle.
 
 \begin{figure}[H]
 	\centering
@@ -403,8 +436,23 @@ In the final test, the drone held its position surprisingly well considering the
 The implemented poses were recognized flawlessly and there is no problem with the ambiguity of certain poses, which can only be achieved by unnatural arm movements.
 This does not occur in practical use.
 The autonomous flight capability of the drone was also good, even if the tresholds are not optimally adjusted, which manifests itself as oversteering in the movements.
-
-
+\\\\
+During the work, problems kept coming up.
+I would like to briefly name the three biggest problems and explain how they were solved and how they affected the project.
+\\\\
+\textbf{Setting of parameters}
+The setting of parameters such as the movement thresholds was very time-consuming, especially when actively testing the drone. It seemed that there was no perfect setting that would make the drone fly smoothly.
+You would have to invest several hours of testing and calibration until the flight behavior of the drone is stable. 
+However, this is sufficient for a first prototype.
+\\\\
+\textbf{Determination of the poses}
+Similar to setting the parameters, poses can be defined over a finite number of states. The threshold of the angles between the individual limb dimensions as well as the evaluated landmarks can be varied arbitrarily.
+In the proof of concept, I decided to focus on simple poses to make the process easier to follow.
+\\\\
+\textbf{Preconfigured drone}
+The already flyable drone which was delivered with a SDK took a lot of work off my hands concerning the electronic part.
+However, I was also dependent on the features that the drone provides me.
+With direct influence on electronics and especially the rotor control, the flight capability could be improved immensely.
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Improvements
 \section{Improvements}
