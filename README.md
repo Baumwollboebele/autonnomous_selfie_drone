@@ -30,6 +30,7 @@ Additionally the drone will keep its position relative to the persons face cente
 > A documentation of the codebase can be found here: [Documentation](https://baumwollboebele.github.io/autonnomous_selfie_drone/)
 
 ## Short demonstration video
+> https://www.youtube.com/watch?v=AIDdR5VVdwk&ab_channel=NectarTM
 <img src="/images/video_1.gif" height="300"/>
 <img src="/images/video_2.gif" height="300"/>
 
